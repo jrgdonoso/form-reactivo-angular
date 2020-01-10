@@ -1,0 +1,35 @@
+<div class="form-container">
+
+   <h1>Contactanos!!</h1>
+
+   <div class="alert-success" *ngIf="contactForm.submi">
+      Formulario enviado
+   </div>
+
+   <form [formGroup]="contactForm" (ngSubmit)='onSaveForm()'>
+
+      
+      <div class="alert-dangert" *ngIf="name.invalid && (name.dirty || name.touched)">
+         <div class="container-error-message" *ngIf="name.errors.required">nombre requerido</div>
+         <div class="container-error-message" *ngIf="name.errors.minlength">nombre mayor a 5 caracteres</div>
+      </div>
+      <input type="text" formControlName="name" placeholder="Nombre">
+
+      <div class="alert-dangert" *ngIf="email.invalid && (email.dirty || email.touched)">
+         <div class="container-error-message" *ngIf="email.errors.required">Correo requerido</div>
+         <div class="container-error-message" *ngIf="email.errors.minlength">Correo mayor a 5 caracteres</div>
+         <div class="container-error-message" *ngIf="email.errors.pattern">Formato incorrecto</div>
+      </div>
+      <input type="email" formControlName="email" placeholder="correo">
+
+      <div class="alert alert-dangert" *ngIf="message.invalid && (message.dirty || message.touched)">
+
+         <div class="container-error-message" *ngIf="message.errors.required">Mensaje requerido</div>
+         <div class="container-error-message" *ngIf="message.errors.minlength || message.errors.maxlength"> Mensaje
+            entre 10 y 100 caracteres</div>
+      </div>
+      <textarea formControlName="message" placeholder="Escribe tu mensaje"></textarea>
+      <button type="submit" class="btn-send" [disabled]="!contactForm.valid"  >Enviar</button>
+   </form>
+
+</div>
